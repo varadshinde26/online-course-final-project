@@ -1,7 +1,5 @@
 from django.urls import path
-
 from . import views
-
 
 app_name = "onlinecourse"
 
@@ -19,7 +17,7 @@ urlpatterns = [
     ),
 
     path(
-        "exam-result/<int:lesson_id>/",
+        "course/<int:course_id>/submission/<int:submission_id>/result/",
         views.show_exam_result,
         name="show_exam_result"
     ),
