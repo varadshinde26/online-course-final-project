@@ -1,6 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
-from .models import Course, Lesson, Question, Choice, Submission
+
+from .models import (
+    Course,
+    Lesson,
+    Instructor,
+    Learner,
+    Question,
+    Choice,
+    Submission
+)
 
 
 class ChoiceInline(admin.TabularInline):
@@ -30,6 +39,16 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ("name", "instructor")
 
 
+@admin.register(Instructor)
+class InstructorAdmin(admin.ModelAdmin):
+    list_display = ("name", "user")
+
+
+@admin.register(Learner)
+class LearnerAdmin(admin.ModelAdmin):
+    list_display = ("name", "user")
+
+
 @admin.register(Choice)
 class ChoiceAdmin(admin.ModelAdmin):
     list_display = ("choice_text", "question", "is_correct")
@@ -43,10 +62,3 @@ class SubmissionAdmin(admin.ModelAdmin):
         "selected_choice",
         "submitted_at"
     )
-
-
-admin.site.unregister(User)
-admin.site.unregister(Group)
-
-admin.site.register(User)
-admin.site.register(Group)
